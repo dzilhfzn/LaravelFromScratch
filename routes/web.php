@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,10 @@ Route::get('/', function () {
 //     return 'test';
 // });
 
-Route::get('products', [ProductsController::class, 'index']);
-Route::get('products/{id}', [ProductsController::class, 'display'])->where('id', '[0-9]+');
+Route::get('/products', [ProductsController::class, 'index']);
+Route::get('/products/{id}', [ProductsController::class, 'display'])->where('id', '[0-9]+');
+
+Route::view('/about', 'about');
+Route::view('/contact', 'contact');
+
+Route::get('/users/{name}', [Users::class, 'index']);
