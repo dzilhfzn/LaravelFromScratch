@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Users Page</h1>
+    <x-header data="Users Page" />
+    <p>This is the Users Page body</p>
+
+    <ul>
+        @foreach ($data as $key=>$value)
+            <li>{{ $key }}</li>
+            <section>{{ $value }}</section>
+        @endforeach
+    </ul>
 </body>
 </html>

@@ -29,4 +29,4 @@ Route::get('/products/{id}', [ProductsController::class, 'display'])->where('id'
 Route::view('/about', 'about');
 Route::view('/contact', 'contact');
 
-Route::get('/users/{name}', [Users::class, 'index']);
+Route::get('/users', [Users::class, 'index']);
