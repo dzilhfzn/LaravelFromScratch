@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\Users;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +32,9 @@ Route::view('/about', 'about');
 Route::view('/contact', 'contact');
 
 Route::get('/users', [Users::class, 'index']);
+
+Auth::routes();
+
+Route::get('/get/student/list', [StudentsController::class, 'getStudentList']);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
