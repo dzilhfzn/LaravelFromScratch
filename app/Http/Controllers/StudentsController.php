@@ -11,7 +11,7 @@ class StudentsController extends Controller
 {
     public function getStudentList() {
         try {
-            $student = Student::all();
+            $student = Student::take(10)->get();
             return response()->json($student);
         }
         catch(Exception $e) {

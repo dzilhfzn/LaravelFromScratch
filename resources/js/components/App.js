@@ -4,7 +4,14 @@ import CreateTable from "./CreateTable";
 function App() {
     return (
         <div className="container">
-            <CreateTable />
+            <CreateTable
+                tableHeader = {[
+                    '#', 
+                    'Student ID', 
+                    'Student IC', 
+                    'Student Name',
+                ]}
+            />
         </div>
     );
 }

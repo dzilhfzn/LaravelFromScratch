@@ -1,8 +1,9 @@
 import axios from "axios";
-import React from "react";
+import React, {Component} from "react";
 import { Table } from "reactstrap";
+import CreateRow from "./CreateRow";
 
-class CreateTable extends React.Component {
+export default class CreateTable extends Component {
     
     constructor(props) {
         super(props);
@@ -12,85 +13,40 @@ class CreateTable extends React.Component {
         };
     };
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.getStudentList();
     }
 
     getStudentList = () => {
-        axios.get('/get/student/list').then(function(response) {
-            console.log(response.data);
-            // this.setState({
-            //     student: response.data,
-            // })
+        axios.get('/get/student/list').then((response) => {
+            // console.log(response.data[0].student_ic);
+            this.setState({
+                student: response.data,
+            })
         })
     }
 
     render() {
+        console.log(this.state.student[0])
         return (
             <Table bordered striped hover responsive>
                 <thead>
                     <tr>
-                        <th>
-                            #
-                        </th>
-                        <th>
-                            First Name
-                        </th>
-                        <th>
-                            Last Name
-                        </th>
-                        <th>
-                            Username
-                        </th>
+                        {
+                            this.props.tableHeader.map((element, index) => {
+                                return <th key={index}>
+                                    {element}
+                                </th>
+                            })
+                        }
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">
-                            1
-                        </th>
-                        <td>
-                            Mark
-                        </td>
-                        <td>
-                            Otto
-                        </td>
-                        <td>
-                            @mdo
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            2
-                        </th>
-                        <td>
-                            Jacob
-                        </td>
-                        <td>
-                            Thornton
-                        </td>
-                        <td>
-                            @fat
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            3
-                        </th>
-                        <td>
-                            Larry
-                        </td>
-                        <td>
-                            the Bird
-                        </td>
-                        <td>
-                            @twitter
-                        </td>
-                    </tr>
+                    {
+                        this.state.student.map((element, index) => <CreateRow key={index} data={element}/>)
+                    }
                 </tbody>
             </Table>
         );
     }
 }
-
-export default CreateTable;
